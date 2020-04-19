@@ -20,7 +20,7 @@ public class ArrayList implements List {
      */
     @Override
     public int size() {
-        return 0;
+        return elementData.length;
     }
 
     /**
@@ -30,7 +30,7 @@ public class ArrayList implements List {
      */
     @Override
     public Object get(int i) {
-        return null;
+        return elementData[i];
     }
 
     /**
@@ -38,7 +38,7 @@ public class ArrayList implements List {
      */
     @Override
     public boolean isEmpty() {
-        return false;
+        return elementData.length == 0 ? false : true;
     }
 
     /**
