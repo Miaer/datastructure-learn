@@ -1,5 +1,7 @@
 package com.linertable;
 
+import java.util.Arrays;
+
 /**
  * 顺序表实现
  * @author mrliz
@@ -14,13 +16,27 @@ public class ArrayList implements List {
 
     private int size;
 
+    /**
+     * 默认数组长度
+     */
+    private static final int DEFAULT_CAPACITY = 10;
+
+    private static final Object[] DEFAULTCAPACITY_EMPTY_ELEMENTDATA = {};
+
+    public ArrayList(int initialCapacity) {
+        this.elementData = new Object[initialCapacity];
+    }
+
+    public ArrayList() {
+        elementData = new Object[]{};
+    }
 
     /**
      * 返回线性表的大小，即数据元素的个数。
      */
     @Override
     public int size() {
-        return elementData.length;
+        return size;
     }
 
     /**
@@ -38,7 +54,7 @@ public class ArrayList implements List {
      */
     @Override
     public boolean isEmpty() {
-        return elementData.length == 0 ? false : true;
+        return size == 0;
     }
 
     /**
@@ -52,7 +68,7 @@ public class ArrayList implements List {
     }
 
     /**
-     * 返回数据元素 e 在线性表中的序号
+     * 返回数据元素 e 在线性表中的索引
      *
      * @param e
      */
@@ -69,7 +85,14 @@ public class ArrayList implements List {
      */
     @Override
     public void add(int i, Object e) {
+        rangeCheckForAdd(i);
+        elementData[i] = e;
+    }
 
+    private void rangeCheckForAdd(int index) {
+        if (index < 0 || index > size) {
+            throw  new MyArrayIndexOutOfBoundsException("数组下标越界异常" + index);
+        }
     }
 
     /**
@@ -79,7 +102,26 @@ public class ArrayList implements List {
      */
     @Override
     public void add(Object e) {
+        ensureCapacity();
 
+        elementData[size] = e;
+        size++;
+    }
+
+    private void ensureCapacity() {
+        int OldCapacity = elementData.length;
+        // 首次增加长度
+        if (OldCapacity == 0 || elementData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA) {
+            elementData = new Object[DEFAULT_CAPACITY];
+
+            return;
+        }
+
+        // 数组动态扩容
+        if (size >= OldCapacity){
+            int newCapacity = OldCapacity + (OldCapacity >> 1);
+            elementData = Arrays.copyOf(elementData,newCapacity);
+        }
     }
 
     /**

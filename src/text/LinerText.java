@@ -1,6 +1,7 @@
 package text;
 
-import java.util.*;
+import com.linertable.ArrayList;
+import com.linertable.List;
 
 /**
  * 线性表测试类
@@ -9,17 +10,19 @@ import java.util.*;
 public abstract class LinerText {
 
     public static void main(String[] args) {
-//        int[] nums = {1,1,2};
-//        Set set = new HashSet();
-//        for (int i = 0; i < nums.length; i++) {
-//            set.add(nums[i]);
-//        }
-//        System.out.println(nums);
-//        System.out.println(set);
+
         List list = new ArrayList();
-        list.add(new Person("zhangsan",18));
-        list.add(new Person("xiaohua",16));
-        list.add(new Person("wangwu",99));
-        System.out.println(list);
+
+        for (int i = 0; i < 10; i++) {
+            list.add(i);
+        }
+
+        list.add(12,10);
+
+        System.out.println(list.isEmpty());
+        System.out.println(list.get(2));
+        System.out.println(list.get(3));
+        System.out.println(list.get(4));
+
     }
 }
