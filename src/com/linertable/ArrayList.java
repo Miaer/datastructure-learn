@@ -149,11 +149,20 @@ public class ArrayList implements List {
     /**
      * 删除线性表中序号为 i 的元素,并返回之
      *
-     * @param i
+     * @param index
      */
     @Override
-    public Object remove(int i) {
-        return null;
+    public Object remove(int index) {
+        rangeCheckForAdd(index);
+
+        Object oldValue = elementData[index];
+
+        for (int i = index; i < elementData.length - 1; i++) {
+            elementData[index++] = elementData[i + 1];
+        }
+
+        Arrays.copyOf(elementData,elementData.length -1);
+        return oldValue;
     }
 
     /**
@@ -174,6 +183,7 @@ public class ArrayList implements List {
      */
     @Override
     public Object replace(int i, Object e) {
-        return null;
+        elementData[i] = e;
+        return elementData[i];
     }
 }

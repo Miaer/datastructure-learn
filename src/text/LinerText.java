@@ -11,18 +11,24 @@ public abstract class LinerText {
 
     public static void main(String[] args) {
 
-        List list = new ArrayList();
+        List myList = new ArrayList();
+        java.util.List javaList = new java.util.ArrayList();
 
-        for (int i = 0; i < 10; i++) {
-            list.add(i);
+        for (int i = 0; i < 100; i++) {
+            myList.add(i);
         }
 
-        list.add(12,10);
+        for (int i = 0; i < 100; i++) {
+            javaList.add(i);
+        }
 
-        System.out.println(list.isEmpty());
-        System.out.println(list.get(2));
-        System.out.println(list.get(3));
-        System.out.println(list.get(4));
+        myList.remove(5);
+        javaList.remove(5);
+
+        System.out.println(myList.get(5));
+        System.out.println(myList.size());
+        System.out.println(javaList.get(5));
+        System.out.println(myList.size());
 
     }
 }
